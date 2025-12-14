@@ -37,7 +37,11 @@ echo "Starting image processing - $(date)" >> $LOG_FILE
 # Process each image
 for dir in */; do
   for file in *; do
-    echo "The Filename: ${file}";
+    # Check if it's an image (including webp)
+    if [[ ! "$file" =~ \.(jpg|jpeg|png|gif|bmp|tiff|webp)$ ]]; then
+      echo "Not an image, skipping." >> "${LOG_FILE}" 
+      continue;
+    fi;
 
     # Ensure the file exists and is a valid image
     [ -f "$file" ] || continue
