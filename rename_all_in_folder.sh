@@ -18,6 +18,16 @@ if [ ! -d "$LOG_DIR" ]; then
   mkdir -p "$LOG_DIR"
 fi
 
+# Create a backup
+BACKUP_DIR="../BACKUP_DIR"
+if [ -d "$BACKUP_DIR" ]; then 
+  echo "Back up directory already exists";
+  exit;
+fi
+
+mkdir -p "$BACKUP_DIR"
+cp -r * "$BACKUP_DIR"
+
 # Counter to track requests
 counter=0
 
